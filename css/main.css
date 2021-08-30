@@ -1,7 +1,13 @@
+/* Eyes dividers */
 .divider-custom .divider-custom-icon img {
   max-width: 7rem;
 }
-
 .divider-custom.divider-light .divider-custom-icon img {
   filter: invert(1);
+}
+
+/* Section colours */
+:root {
+  --bs-primary: #1db1ff;
+  --bs-primary-rgb: 29, 177, 255;
 }
