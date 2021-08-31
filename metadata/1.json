@@ -1,0 +1,56 @@
+{
+  "description": "Peep!",
+  "external_url": "https://peeps.club",
+  "image": "https://peeps.club/metadata/MrsMilky.svg",
+  "name": "Peep #1 MrsMilky",
+  "attributes": [
+    {
+      "trait_type": "Created",
+      "value": "Curated"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Blue"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Basic"
+    },
+    {
+      "trait_type": "Skin",
+      "value": "Honey"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Messy Bun"
+    },
+    {
+      "trait_type": "Expression",
+      "value": "Meow"
+    },
+    {
+      "trait_type": "Eye Colour",
+      "value": "Brown"
+    },
+    {
+      "trait_type": "Eye Style",
+      "value": "Classic"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Blue Jeans & Navy Shirt"
+    },
+    {
+      "trait_type": "Accessory",
+      "value": "MrsMilky's Signature Yellow Cardigan"
+    },
+    {
+      "trait_type": "Favourite Animal",
+      "value": "Cat"
+    },
+    {
+      "trait_type": "Favourite Mythical Creature",
+      "value": "Pheonix"
+    }
+  ]
+}

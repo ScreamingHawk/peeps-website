@@ -1,0 +1,56 @@
+{
+  "description": "Peep!",
+  "external_url": "https://peeps.club",
+  "image": "https://peeps.club/metadata/MilkyTaste.svg",
+  "name": "Peep #2 MilkyTaste",
+  "attributes": [
+    {
+      "trait_type": "Created",
+      "value": "Curated"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Blue"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Arm held behind back"
+    },
+    {
+      "trait_type": "Skin",
+      "value": "Pale Ivory"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Messy Short Flicked"
+    },
+    {
+      "trait_type": "Expression",
+      "value": "Humph"
+    },
+    {
+      "trait_type": "Eye Colour",
+      "value": "Light Brown"
+    },
+    {
+      "trait_type": "Eye Style",
+      "value": "Classic"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Blue Jeans & Navy Shirt"
+    },
+    {
+      "trait_type": "Accessory",
+      "value": "MilkyTaste's Signature Uniform"
+    },
+    {
+      "trait_type": "Favourite Animal",
+      "value": "Cat"
+    },
+    {
+      "trait_type": "Favourite Mythical Creature",
+      "value": "Unicorn"
+    }
+  ]
+}
