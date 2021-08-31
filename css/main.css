@@ -2,8 +2,12 @@
 .divider-custom .divider-custom-icon img {
   max-width: 7rem;
 }
-.divider-custom.divider-light .divider-custom-icon img {
+.divider-custom.divider-light .divider-custom-icon img,
+.navbar-brand img {
   filter: invert(1);
+}
+.navbar-brand img {
+  vertical-align: text-top !important;
 }
 
 /* Section colours */
