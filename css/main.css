@@ -9,5 +9,7 @@
 /* Section colours */
 :root {
   --bs-primary: #1db1ff;
+  --bs-secondary: #004668;
   --bs-primary-rgb: 29, 177, 255;
+  --bs-secondary-rgb: 0, 70, 104;
 }
