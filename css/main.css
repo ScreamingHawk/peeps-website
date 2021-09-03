@@ -17,3 +17,10 @@
   --bs-primary-rgb: 29, 177, 255;
   --bs-secondary-rgb: 0, 70, 104;
 }
+
+/* Input style */
+#mintSection input {
+  width: 220px;
+  max-width: 100vw;
+  margin: auto;
+}
