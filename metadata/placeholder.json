@@ -1,0 +1,16 @@
+{
+  "description": "Peep!",
+  "external_url": "https://peeps.club",
+  "image": "https://peeps.club/metadata/Placeholder.gif",
+  "name": "Unrevealed Peep",
+  "attributes": [
+    {
+      "trait_type": "Created",
+      "value": "Generated"
+    },
+    {
+      "trait_type": "Unrevealed",
+      "value": "Unrevealed"
+    }
+  ]
+}
