@@ -1,7 +1,10 @@
 /* global ethers */
 
 CONTRACTS = {
-	4: '0xcc4cdcd1e014ddde753e91912713b595f847dfbd',
+	4: {
+		PEEPTOKEN: '0xF33691484898f9A79ca490B5E46e4596e6795401',
+		PEEPTOKENFACTORY: '0x6383c81D43fE4f0C32c33C4B597585ef9Fae4d05',
+	}
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Chosen wallet provider given by the dialog window
 	let provider
-	// Contract
-	let contract
+	// Contracts
+	let peepToken, peepTokenFactory
 
 	const providerOptions = {
 		walletconnect: {
@@ -64,12 +67,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	const updateNetwork = async network => {
 		connectBtn.setAttribute('hidden', true)
 		if (CONTRACTS[network.chainId]) {
-			contract = new ethers.Contract(CONTRACTS[network.chainId], JSON.stringify(PEEPTOKEN_ABI), provider.getSigner())
+			const { PEEPTOKEN, PEEPTOKENFACTORY } = CONTRACTS[network.chainId]
+			peepToken = new ethers.Contract(PEEPTOKEN, PEEPTOKEN_ABI, provider.getSigner())
+			peepTokenFactory = new ethers.Contract(PEEPTOKENFACTORY, PEEPTOKENFACTORY_ABI, provider.getSigner())
 
-			clearMessage()
+			renderMessage('Loading...')
 
 			// Check sale
-			if (await contract.SALE_ACTIVE()) {
+			const active = await peepTokenFactory.SALE_ACTIVE()
+			clearMessage()
+			if (active) {
 				document.getElementById('mintSection').removeAttribute('hidden')
 				document.getElementById('notYet').setAttribute('hidden', true)
 				return true
@@ -107,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		renderMessage('Minting! Please wait...')
 
 		try {
-			const tx = await contract.mint(qty, {
-				value: (await contract.TOKEN_PRICE()).mul(qty)
+			const tx = await peepTokenFactory.mint(qty, {
+				value: (await peepTokenFactory.TOKEN_PRICE()).mul(qty)
 			});
 
 			renderMessage('Waiting for confirmation...')
