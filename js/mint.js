@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	})
 
 	// Update message
-	function renderMessage(message) {
-		let messageEl = document.getElementById('message')
+	function renderMessage(message, el = 'message') {
+		let messageEl = document.getElementById(el)
 		messageEl.innerHTML = message
 	}
 	// Remove message
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		return renderMessage('')
 	}
 	// Update message with error
-	function renderError(err) {
+	function renderError(err, el) {
 		console.log(err)
 		let message = err
 		if (err.code && err.reason) {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			message = `${err.code}: ${err.message}`
 		}
 		message = `<code class="error">${message}</code>`
-		return renderMessage(message)
+		return renderMessage(message, el)
 	}
 
 	if (!window.PEEPTOKEN_ABI) {
@@ -101,6 +101,33 @@ document.addEventListener('DOMContentLoaded', () => {
 			const msg = 'Could not get a wallet connection'
 			console.log(msg, err)
 			return renderError(msg)
+		}
+	})
+
+	// Reserve button
+	const reserveButton = document.getElementById('reserveBtn')
+	reserveButton.addEventListener('click', async () => {
+		await updateNetwork(provider._network)
+
+		qty = parseFloat(document.getElementById('reserveQty').value, 10)
+
+		renderMessage('Reserving! Please wait...', 'reserveMessage')
+
+		try {
+			const tx = await peepTokenFactory.reserve(qty, {
+				value: (await peepTokenFactory.TOKEN_PRICE()).mul(qty)
+			});
+
+			renderMessage('Waiting for confirmation...', 'reserveMessage')
+			await tx.wait()
+
+			renderMessage(`<h3>You reserved ${qty > 1 ? qty + ' Peeps' : 'a Peep'}!</h3>`, 'reserveMessage')
+		} catch (err) {
+			if (err.code === 4001) {
+				renderError('Transaction declined', 'reserveMessage')
+			} else {
+				renderError(err, 'reserveMessage')
+			}
 		}
 	})
 
