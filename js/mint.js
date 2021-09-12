@@ -72,12 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			const qtyBox = document.getElementById('reserveMintQty')
 			qtyBox.value = cappedAmount
 			qtyBox.max = cappedAmount
+
 			document.getElementById('hasReservations').removeAttribute('hidden')
-			document.getElementById('noReservations').setAttribute('hidden', true)
-		} else {
-			document.getElementById('hasReservations').setAttribute('hidden', true)
-			document.getElementById('noReservations').removeAttribute('hidden')
+			return true
 		}
+		document.getElementById('hasReservations').setAttribute('hidden', true)
+		return false
 	}
 
 	const updateNetwork = async network => {
@@ -92,11 +92,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			// Check sale
 			const active = await peepTokenFactory.SALE_ACTIVE()
-			await updateReserved(signer)
+			const hasRes = await updateReserved(signer)
+			if (hasRes) {
+				document.getElementById('mintin1Section').setAttribute('hidden', true)
+			} else {
+				if (active) {
+					// No Reservations and active
+					document.getElementById('mintin1Section').removeAttribute('hidden')
+				} else {
+					// No reservations not active
+					document.getElementById('mintin1Section').setAttribute('hidden', true)
+				}
+			}
+			if (active) {
+				// Active
+				document.getElementById('reserveSection').removeAttribute('hidden')
+			} else {
+				document.getElementById('reserveSection').setAttribute('hidden', true)
+			}
 			clearMessage()
 			if (active) {
 				document.getElementById('mintSection').removeAttribute('hidden')
 				document.getElementById('notYet').setAttribute('hidden', true)
+			}
+			if (active || hasRes) {
 				return true
 			}
 		} else {

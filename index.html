@@ -103,7 +103,7 @@
 					<button class="btn btn-xl btn-outline-dark" id="connectBtn">
 						Connect Wallet!
 					</button>
-					<div id="mintSection" hidden>
+					<div id="reserveSection" hidden>
 						<div class="col mb-4">
 							<strong>
 								Gas too high?
@@ -122,46 +122,46 @@
 								</button>
 							</div>
 						</form>
-						<div id="hasReservations" hidden>
-							<div class="col mb-4">
-								<strong>You have <span id="reservedCount">X</span> Peeps reserved!</strong>
-							</div>
-							<form class="row row-cols-lg-auto g-3 align-items-end justify-content-center mb-4" onsubmit="return false">
-								<div class="col-12">
-									<label for="reserveMintQty" class="form-label">Mint them now?</label>
-									<input id="reserveMintQty" class="form-control" type="number" value="1" min="1" max="100" />
-								</div>
-								<div class="col-12">
-									<button class="btn btn-xl btn-outline-dark" id="reserveMintBtn">
-										Mint Reserved!
-									</button>
-								</div>
-							</form>
+					</div>
+					<div id="hasReservations" hidden>
+						<div class="col mb-4">
+							<strong>You have <span id="reservedCount">X</span> Peeps reserved!</strong>
 						</div>
-						<p id="reserveMessage" class="mt-4"></p>
-						<div id="noReservations">
-							<div class="divider-custom divider-dark">
-								<div class="divider-custom-line"></div>
+						<form class="row row-cols-lg-auto g-3 align-items-end justify-content-center mb-4" onsubmit="return false">
+							<div class="col-12">
+								<label for="reserveMintQty" class="form-label">Mint them now?</label>
+								<input id="reserveMintQty" class="form-control" type="number" value="1" min="1" max="100" />
 							</div>
-							<div class="col mb-4">
-								<strong>
-									Gas is ok?
-									<br/>
-									Mint in one transaction.
-								</strong>
+							<div class="col-12">
+								<button class="btn btn-xl btn-outline-dark" id="reserveMintBtn">
+									Mint Reserved!
+								</button>
 							</div>
-							<form class="row row-cols-lg-auto g-3 align-items-end justify-content-center" onsubmit="return false">
-								<div class="col-12">
-									<label for="qty" class="form-label">Mint Peeps?</label>
-									<input id="qty" class="form-control" type="number" value="1" min="1" max="10" />
-								</div>
-								<div class="col-12">
-									<button class="btn btn-xl btn-outline-dark" id="mintBtn">
-										Mint in 1!
-									</button>
-								</div>
-							</form>
+						</form>
+					</div>
+					<p id="reserveMessage" class="mt-4"></p>
+					<div id="mintin1Section" hidden>
+						<div class="divider-custom divider-dark">
+							<div class="divider-custom-line"></div>
 						</div>
+						<div class="col mb-4">
+							<strong>
+								Gas is ok?
+								<br/>
+								Mint in one transaction.
+							</strong>
+						</div>
+						<form class="row row-cols-lg-auto g-3 align-items-end justify-content-center" onsubmit="return false">
+							<div class="col-12">
+								<label for="qty" class="form-label">Mint Peeps?</label>
+								<input id="qty" class="form-control" type="number" value="1" min="1" max="10" />
+							</div>
+							<div class="col-12">
+								<button class="btn btn-xl btn-outline-dark" id="mintBtn">
+									Mint in 1!
+								</button>
+							</div>
+						</form>
 					</div>
 					<p id="message" class="mt-4"></p>
 				</div>
