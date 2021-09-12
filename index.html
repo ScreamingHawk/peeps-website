@@ -113,7 +113,7 @@
 						</div>
 						<form class="row row-cols-lg-auto g-3 align-items-end justify-content-center mb-4" onsubmit="return false">
 							<div class="col-12">
-								<label for="reserveQty" class="form-label">How many Peeps?</label>
+								<label for="reserveQty" class="form-label">Reserve Peeps?</label>
 								<input id="reserveQty" class="form-control" type="number" value="1" min="1" max="10" />
 							</div>
 							<div class="col-12">
@@ -122,6 +122,22 @@
 								</button>
 							</div>
 						</form>
+						<div id="hasReservations" hidden>
+							<div class="col mb-4">
+								<strong>You have <span id="reservedCount">X</span> Peeps reserved!</strong>
+							</div>
+							<form class="row row-cols-lg-auto g-3 align-items-end justify-content-center mb-4" onsubmit="return false">
+								<div class="col-12">
+									<label for="reserveMintQty" class="form-label">Mint them now?</label>
+									<input id="reserveMintQty" class="form-control" type="number" value="1" min="1" max="100" />
+								</div>
+								<div class="col-12">
+									<button class="btn btn-xl btn-outline-dark" id="reserveMintBtn">
+										Mint Reserved!
+									</button>
+								</div>
+							</form>
+						</div>
 						<p id="reserveMessage" class="mt-4"></p>
 						<div class="divider-custom divider-dark">
 							<div class="divider-custom-line"></div>
@@ -135,7 +151,7 @@
 						</div>
 						<form class="row row-cols-lg-auto g-3 align-items-end justify-content-center" onsubmit="return false">
 							<div class="col-12">
-								<label for="qty" class="form-label">How many Peeps?</label>
+								<label for="qty" class="form-label">Mint Peeps?</label>
 								<input id="qty" class="form-control" type="number" value="1" min="1" max="10" />
 							</div>
 							<div class="col-12">

@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	if (!window.PEEPTOKEN_ABI) {
-			return renderError('Could not find Peep Token ABI')
+		return renderError('Could not find Peep Token ABI')
 	}
 
 	// Show first section
@@ -64,17 +64,33 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Manage wallet connection
 	const connectBtn = document.getElementById('connectBtn')
 
+	const updateReserved = async signer => {
+		const reservedAmount = await peepTokenFactory.reservedAmount(await signer.getAddress())
+		if (reservedAmount > 0) {
+			document.getElementById('reservedCount').textContent = reservedAmount
+			const cappedAmount = reservedAmount > 100 ? 100 : reservedAmount // Cap to 100
+			const qtyBox = document.getElementById('reserveMintQty')
+			qtyBox.value = cappedAmount
+			qtyBox.max = cappedAmount
+			document.getElementById('hasReservations').removeAttribute('hidden')
+		} else {
+			document.getElementById('hasReservations').setAttribute('hidden', true)
+		}
+	}
+
 	const updateNetwork = async network => {
 		connectBtn.setAttribute('hidden', true)
 		if (CONTRACTS[network.chainId]) {
 			const { PEEPTOKEN, PEEPTOKENFACTORY } = CONTRACTS[network.chainId]
-			peepToken = new ethers.Contract(PEEPTOKEN, PEEPTOKEN_ABI, provider.getSigner())
-			peepTokenFactory = new ethers.Contract(PEEPTOKENFACTORY, PEEPTOKENFACTORY_ABI, provider.getSigner())
+			const signer = provider.getSigner()
+			peepToken = new ethers.Contract(PEEPTOKEN, PEEPTOKEN_ABI, signer)
+			peepTokenFactory = new ethers.Contract(PEEPTOKENFACTORY, PEEPTOKENFACTORY_ABI, signer)
 
 			renderMessage('Loading...')
 
 			// Check sale
 			const active = await peepTokenFactory.SALE_ACTIVE()
+			await updateReserved(signer)
 			clearMessage()
 			if (active) {
 				document.getElementById('mintSection').removeAttribute('hidden')
@@ -122,6 +138,33 @@ document.addEventListener('DOMContentLoaded', () => {
 			await tx.wait()
 
 			renderMessage(`<h3>You reserved ${qty > 1 ? qty + ' Peeps' : 'a Peep'}!</h3>`, 'reserveMessage')
+
+			await updateReserved(provider.getSigner())
+		} catch (err) {
+			if (err.code === 4001) {
+				renderError('Transaction declined', 'reserveMessage')
+			} else {
+				renderError(err, 'reserveMessage')
+			}
+		}
+	})
+
+	// Reserved mint button
+	const reserveMintButton = document.getElementById('reserveMintBtn')
+	reserveMintButton.addEventListener('click', async () => {
+		qty = parseFloat(document.getElementById('reserveMintQty').value, 10)
+
+		renderMessage('Minting! Please wait...', 'reserveMessage')
+
+		try {
+			const tx = await peepTokenFactory.reservedMint(qty);
+
+			renderMessage('Waiting for confirmation...', 'reserveMessage')
+			await tx.wait()
+
+			renderMessage(`<h3>You got ${qty > 1 ? qty + ' Peeps' : 'a Peep'}!</h3>`, 'reserveMessage')
+
+			await updateReserved(provider.getSigner())
 		} catch (err) {
 			if (err.code === 4001) {
 				renderError('Transaction declined', 'reserveMessage')
