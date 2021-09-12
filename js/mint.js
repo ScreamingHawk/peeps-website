@@ -73,8 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			qtyBox.value = cappedAmount
 			qtyBox.max = cappedAmount
 			document.getElementById('hasReservations').removeAttribute('hidden')
+			document.getElementById('noReservations').setAttribute('hidden', true)
 		} else {
 			document.getElementById('hasReservations').setAttribute('hidden', true)
+			document.getElementById('noReservations').removeAttribute('hidden')
 		}
 	}
 

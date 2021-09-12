@@ -139,27 +139,29 @@
 							</form>
 						</div>
 						<p id="reserveMessage" class="mt-4"></p>
-						<div class="divider-custom divider-dark">
-							<div class="divider-custom-line"></div>
-						</div>
-						<div class="col mb-4">
-							<strong>
-								Gas is ok?
-								<br/>
-								Mint in one transaction.
-							</strong>
-						</div>
-						<form class="row row-cols-lg-auto g-3 align-items-end justify-content-center" onsubmit="return false">
-							<div class="col-12">
-								<label for="qty" class="form-label">Mint Peeps?</label>
-								<input id="qty" class="form-control" type="number" value="1" min="1" max="10" />
+						<div id="noReservations">
+							<div class="divider-custom divider-dark">
+								<div class="divider-custom-line"></div>
 							</div>
-							<div class="col-12">
-								<button class="btn btn-xl btn-outline-dark" id="mintBtn">
-									Mint in 1!
-								</button>
+							<div class="col mb-4">
+								<strong>
+									Gas is ok?
+									<br/>
+									Mint in one transaction.
+								</strong>
 							</div>
-						</form>
+							<form class="row row-cols-lg-auto g-3 align-items-end justify-content-center" onsubmit="return false">
+								<div class="col-12">
+									<label for="qty" class="form-label">Mint Peeps?</label>
+									<input id="qty" class="form-control" type="number" value="1" min="1" max="10" />
+								</div>
+								<div class="col-12">
+									<button class="btn btn-xl btn-outline-dark" id="mintBtn">
+										Mint in 1!
+									</button>
+								</div>
+							</form>
+						</div>
 					</div>
 					<p id="message" class="mt-4"></p>
 				</div>
