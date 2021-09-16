@@ -39,19 +39,19 @@
   background-color: var(--bs-secondary);
 }
 .progress-10 {
-  background: linear-gradient(to left, var(--bs-secondary) 90%, var(--bs-success) 10%);
+  background: linear-gradient(to left, var(--bs-secondary) 90%, var(--bs-yellow) 10%);
 }
 .progress-25 {
-  background: linear-gradient(to left, var(--bs-secondary) 75%, var(--bs-success) 25%);
+  background: linear-gradient(to left, var(--bs-secondary) 75%, var(--bs-yellow) 25%);
 }
 .progress-50 {
-  background: linear-gradient(to right, var(--bs-success) 50%, var(--bs-secondary) 50%);
+  background: linear-gradient(to right, var(--bs-yellow) 50%, var(--bs-secondary) 50%);
 }
 .progress-75 {
-  background: linear-gradient(to right, var(--bs-success) 75%, var(--bs-secondary) 25%);
+  background: linear-gradient(to right, var(--bs-yellow) 75%, var(--bs-secondary) 25%);
 }
 .progress-100 {
-  background-color: var(--bs-success);
+  background-color: var(--bs-yellow);
 }
 .roadmap-text {
   display: flex;
