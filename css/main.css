@@ -1,3 +1,8 @@
+/* Generic */
+img {
+  max-width: 100%;
+}
+
 /* Eyes dividers */
 .divider-custom .divider-custom-icon img {
   max-width: 7rem;
@@ -61,4 +66,13 @@
 }
 .roadmap-text span {
   font-size: 0.5em;
+}
+
+/* Peep Display */
+
+.close-peeps :first-child img {
+  margin-left: 50%;
+}
+.close-peeps :last-child img {
+  margin-left: -50%;
 }
