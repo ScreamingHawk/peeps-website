@@ -21,6 +21,10 @@
       "value": "Pale Ivory"
     },
     {
+      "trait_type": "Expression",
+      "value": "Humph"
+    },
+    {
       "trait_type": "Hair",
       "value": "Messy Short Flicked"
     },
@@ -37,8 +41,16 @@
       "value": "Classic"
     },
     {
+      "trait_type": "Eye Outline",
+      "value": "Basic"
+    },
+    {
       "trait_type": "Clothes",
       "value": "MilkyTaste's Signature Uniform"
+    },
+    {
+      "trait_type": "Accessory",
+      "value": "None"
     },
     {
       "trait_type": "Favourite Animal",

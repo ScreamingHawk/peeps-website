@@ -29,12 +29,20 @@
       "value": "Dark Brown"
     },
     {
+      "trait_type": "Expression",
+      "value": "Meow"
+    },
+    {
       "trait_type": "Eye Colour",
       "value": "Brown"
     },
     {
       "trait_type": "Eye Style",
       "value": "Classic"
+    },
+    {
+      "trait_type": "Eye Outline",
+      "value": "Basic"
     },
     {
       "trait_type": "Clothes",
