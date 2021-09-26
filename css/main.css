@@ -76,3 +76,9 @@ img {
 .close-peeps :last-child img {
   margin-left: -50%;
 }
+
+.mirror-peep svg {
+  max-width: 100%;
+  min-height: 600px;
+  max-height: 80vh;
+}
