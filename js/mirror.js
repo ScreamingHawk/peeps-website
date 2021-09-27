@@ -1,5 +1,8 @@
 /* global ethers */
 
+// svg filenames
+const expressions = ["Blush", "Erm", "Gentle Red", "Humph", "Joy", "Lick Lips", "Mad", "Meow", "Oh!", "Shock"]
+
 document.addEventListener('DOMContentLoaded', () => {
 	peepEl = document.getElementById("peep")
 	peep = ""
@@ -24,6 +27,20 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	})
 
+	setupExpressionSelect()
+
+	document.getElementById("expression-select").addEventListener("change", () => {
+		setExpression(document.getElementById("expression-select").selectedIndex)
+	})
+
+	document.getElementById("expression-forward").addEventListener("click", () => {
+		setExpressionByOffset(1)
+	})
+
+	document.getElementById("expression-backward").addEventListener("click", () => {
+		setExpressionByOffset(-1)
+	})
+
 	document.getElementById("connect-wallet").addEventListener("click", () => {
 		alert('Coming soon!\nPlay with MilkyTaste while you wait.')
 	})
@@ -33,3 +50,52 @@ document.addEventListener('DOMContentLoaded', () => {
 	})
 
 })
+
+
+let setupExpressionSelect = () => {
+	let el = document.getElementById("expression-select")
+	el.remove(0)
+	expressions.forEach((expression, i) => {
+		let option = document.createElement("option");
+		option.text = expression;
+		el.add(option)
+	});
+}
+
+// for left and right selection of expressions
+let setExpressionByOffset = (offset) => {
+	let currentIndex = document.getElementById("expression-select").selectedIndex
+	currentIndex = (currentIndex + offset).mod(expressions.length)
+	setExpression(currentIndex)
+}
+
+let setExpression = (index) => {
+	let el = document.getElementById("Expression")
+	// load the new expression
+	xhr = new XMLHttpRequest()
+	xhr.open("GET", `/assets/traits/expressions/${expressions[index]}.svg`, false)
+	xhr.overrideMimeType("image/svg+xml")
+	xhr.onload = () => {
+		expression = xhr.responseXML.documentElement
+		el.innerHTML = ''
+		el.appendChild(expression.getElementsByTagName("g")[0])
+		document.getElementById("expression-select").getElementsByTagName('option')[index].selected = "selected"
+		if(expression.getElementsByTagName("defs")[0]){
+			// remove old defs
+			if(document.getElementById("current-expression"))
+				document.getElementById("current-expression").remove()
+
+			// add new defs
+			let defs = document.querySelectorAll("#peep svg")[0]
+			let newDefs = expression.getElementsByTagName("defs")[0]
+			newDefs.id = "current-expression"
+			defs.appendChild(newDefs)
+		}
+	}
+	xhr.send("")
+}
+
+// Because JS can handle mod of negative numbers
+Number.prototype.mod = function(b) {
+    return ((this % b) + b) % b
+}
