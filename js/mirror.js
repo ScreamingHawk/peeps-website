@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let setupExpressionSelect = () => {
 	let el = document.getElementById("expression-select")
-	el.remove(0)
 	expressions.forEach((expression, i) => {
 		let option = document.createElement("option");
 		option.text = expression;
@@ -63,17 +62,26 @@ let setupExpressionSelect = () => {
 }
 
 // for left and right selection of expressions
-let setExpressionByOffset = (offset) => {
+let setExpressionByOffset = offset => {
 	let currentIndex = document.getElementById("expression-select").selectedIndex
-	currentIndex = (currentIndex + offset).mod(expressions.length)
+	currentIndex = currentIndex + offset
+	if (currentIndex == 0){
+		currentIndex = expressions.length
+	}
+	if (currentIndex > expressions.length) {
+		currentIndex = 1
+	}
 	setExpression(currentIndex)
 }
 
-let setExpression = (index) => {
+let setExpression = index => {
+	if (index == 0){
+		return
+	}
 	let el = document.getElementById("Expression")
 	// load the new expression
 	xhr = new XMLHttpRequest()
-	xhr.open("GET", `/assets/traits/expressions/${expressions[index]}.svg`, false)
+	xhr.open("GET", `/assets/traits/expressions/${expressions[index - 1]}.svg`, false)
 	xhr.overrideMimeType("image/svg+xml")
 	xhr.onload = () => {
 		expression = xhr.responseXML.documentElement
@@ -93,9 +101,4 @@ let setExpression = (index) => {
 		}
 	}
 	xhr.send("")
-}
-
-// Because JS can handle mod of negative numbers
-Number.prototype.mod = function(b) {
-    return ((this % b) + b) % b
 }
