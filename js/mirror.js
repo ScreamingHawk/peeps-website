@@ -1,7 +1,7 @@
 /* global ethers */
 
 // svg filenames
-const expressions = ["Blush", "Erm", "Gentle Red", "Humph", "Joy", "Lick Lips", "Mad", "Meow", "Oh!", "Shock"]
+const expressions = ["Blush", "Erm", "Gentle Red", "Humph", "Joy", "Lick Lips", "Mad", "Meow", "Oh!", "Shock", "Tongue Out"]
 
 document.addEventListener('DOMContentLoaded', () => {
 	peepEl = document.getElementById("peep")
