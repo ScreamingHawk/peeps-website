@@ -82,3 +82,12 @@ img {
   min-height: 600px;
   max-height: 80vh;
 }
+
+/* Ghost */
+
+#ghost {
+  z-index: 1001;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+}
